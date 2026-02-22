@@ -180,14 +180,15 @@ function renderReject() {
         count.innerText = filteredSection.children.length
     }
 }
-function NotAvailable(){
+function NotAvailableforInterview(){
     if(interviewList.length==0){
     window.location.href="no-notification.html"}
     else if(interviewList.length!=0){
         renderInterview() 
 
-    }
-    else if(rejectedList.length==0){
+    }}
+    function NotAvailableforReject(){
+    if(rejectedList.length==0){
        window.location.href="no-notification.html"} 
        else if(rejectedList.length!=0){
         renderReject()
