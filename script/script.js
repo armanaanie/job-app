@@ -1,124 +1,130 @@
-let interviewList=[];
-let rejectedList=[];
-let currentStatus="all"
+let interviewList = [];
+let rejectedList = [];
+let currentStatus = "all"
 let total = document.getElementById("totalCount");
 
-let interviewCount =document.getElementById("interviewCount");
-let rejectedCount= document.getElementById("rejectedCount");
+let interviewCount = document.getElementById("interviewCount");
+let rejectedCount = document.getElementById("rejectedCount");
 
-const allFilterBtn= document.getElementById('All-available-btn');
-const interviewFilterBtn= document.getElementById('Interview-available-btn');
-const rejectFilterBtn= document.getElementById('Rejected-available-btn');
-const allCardSection= document.getElementById('allCards');
-const mainContainer= document.querySelector('main');
-const filteredSection= document.getElementById('filtered-Section');
-//const notificationSection= document.getElementById('notificationSection');
-const update= document.getElementById('update');
-//const count= document.getElementById("count")
+const allFilterBtn = document.getElementById('All-available-btn');
+const interviewFilterBtn = document.getElementById('Interview-available-btn');
+const rejectFilterBtn = document.getElementById('Rejected-available-btn');
+const allCardSection = document.getElementById('allCards');
+const mainContainer = document.querySelector('main');
+const filteredSection = document.getElementById('filtered-Section');
+const NotavailableSection = document.getElementById("NotAvailable-section")
+const update = document.getElementById('update');
+const count = document.getElementById("count");
+const of = document.getElementById("of")
 
-function calculateCount(){
-    total.innerText=allCardSection.children.length;
-    update.innerText=allCardSection.children.length;
-    interviewCount.innerText= interviewList.length;
-    rejectedCount.innerText= rejectedList.length;
-   //countshow.innerText=filteredSection.children.length
+function calculateCount() {
+    total.innerText = allCardSection.children.length;
+    update.innerText = allCardSection.children.length;
+    interviewCount.innerText = interviewList.length;
+    rejectedCount.innerText = rejectedList.length;
+
 } calculateCount()
 
-function toggleStyle(id){
+function toggleStyle(id) {
     allFilterBtn.classList.add('bg-white', 'text-black');
-interviewFilterBtn.classList.add('bg-white', 'text-black');
-rejectFilterBtn.classList.add('bg-white', 'text-black');
-allFilterBtn.classList.remove('bg-blue-400', 'text-white');
-interviewFilterBtn.classList.remove('bg-blue-400', 'text-white');
-rejectFilterBtn.classList.remove('bg-blue-400', 'text-white');
-const selected= document.getElementById(id);
-currentStatus= id;
-selected.classList.remove('bg-white', 'text-black');
-selected.classList.add('bg-blue-400', 'text-white')
- if(id=="Interview-available-btn"){
-     allCardSection.classList.add('hidden');
-    filteredSection.classList.remove('hidden')
-renderInterview()
- } else if (id=="All-available-btn"){
-     allCardSection.classList.remove('hidden');
-    filteredSection.classList.add('hidden')
-    } 
-else if(id=="Rejected-available-btn"){
-     allCardSection.classList.add('hidden');
-    filteredSection.classList.remove('hidden')
-renderReject()}
+    interviewFilterBtn.classList.add('bg-white', 'text-black');
+    rejectFilterBtn.classList.add('bg-white', 'text-black');
+    allFilterBtn.classList.remove('bg-blue-400', 'text-white');
+    interviewFilterBtn.classList.remove('bg-blue-400', 'text-white');
+    rejectFilterBtn.classList.remove('bg-blue-400', 'text-white');
+    const selected = document.getElementById(id);
+    currentStatus = id;
+    selected.classList.remove('bg-white', 'text-black');
+    selected.classList.add('bg-blue-400', 'text-white')
+    if (id == "Interview-available-btn") {
+        allCardSection.classList.add('hidden');
+        filteredSection.classList.remove('hidden')
+        renderInterview()
+    } else if (id == "All-available-btn") {
+        allCardSection.classList.remove('hidden');
+        filteredSection.classList.add('hidden')
+    }
+    else if (id == "Rejected-available-btn") {
+        allCardSection.classList.add('hidden');
+        filteredSection.classList.remove('hidden')
+        renderReject()
+    }
 }
 
-mainContainer.addEventListener("click",function(event){
-    
-    if(event.target.classList.contains("interviewBtn")){
+mainContainer.addEventListener("click", function (event) {
+
+    if (event.target.classList.contains("interviewBtn")) {
         console.log("interview click")
-        
-        const parentNode= event.target.closest('.card');
-        const companyName= parentNode.querySelector('.companyName').innerText;
-        const position= parentNode.querySelector('.position').innerText;
-        const location= parentNode.querySelector('.location').innerText;
-        const type=parentNode.querySelector('.type').innerText;
-        const salary= parentNode.querySelector('.salary').innerText;
-        const status= parentNode.querySelector('.status').innerText;
-        parentNode.querySelector('.status').innerText="Interview"
-        const discription=  parentNode.querySelector('.discription').innerText;
-        const cardInfo={
-            companyName,position,location,type,salary,status:"Interview",discription
+
+        const parentNode = event.target.closest('.card');
+        const companyName = parentNode.querySelector('.companyName').innerText;
+        const position = parentNode.querySelector('.position').innerText;
+        const location = parentNode.querySelector('.location').innerText;
+        const type = parentNode.querySelector('.type').innerText;
+        const salary = parentNode.querySelector('.salary').innerText;
+        const status = parentNode.querySelector('.status').innerText;
+        parentNode.querySelector('.status').innerText = "Interview"
+        const discription = parentNode.querySelector('.discription').innerText;
+        const cardInfo = {
+            companyName, position, location, type, salary, status: "Interview", discription
         }
 
-        const jobExist= interviewList.find(item => item.companyName== cardInfo.companyName)
-        if(!jobExist){
+        const jobExist = interviewList.find(item => item.companyName == cardInfo.companyName)
+        if (!jobExist) {
             interviewList.push(cardInfo);
-           // const countshow=count.classList.remove("hidden");
-            
-           
+
+
+
         }
-        rejectedList= rejectedList.filter(item=>item.companyName != cardInfo.companyName)
-        if(currentStatus == "Rejected-available-btn"){
-         
+        rejectedList = rejectedList.filter(item => item.companyName != cardInfo.companyName)
+        if (currentStatus == "Rejected-available-btn") {
+
             renderReject()
         }
         calculateCount()
     }
-    else if(event.target.classList.contains("rejectBtn")){
+    else if (event.target.classList.contains("rejectBtn")) {
         console.log("reject click")
-        
-        const parentNode= event.target.closest('.card');
-        const companyName= parentNode.querySelector('.companyName').innerText;
-        const position= parentNode.querySelector('.position').innerText;
-        const location= parentNode.querySelector('.location').innerText;
-        const type=parentNode.querySelector('.type').innerText;
-        const salary= parentNode.querySelector('.salary').innerText;
-        const status= parentNode.querySelector('.status').innerText;
-        parentNode.querySelector('.status').innerText="Rejected"
-        const discription=  parentNode.querySelector('.discription').innerText;
-        const cardInfo={
-            companyName,position,location,type,salary,status:"Rejected",discription
+
+        const parentNode = event.target.closest('.card');
+        const companyName = parentNode.querySelector('.companyName').innerText;
+        const position = parentNode.querySelector('.position').innerText;
+        const location = parentNode.querySelector('.location').innerText;
+        const type = parentNode.querySelector('.type').innerText;
+        const salary = parentNode.querySelector('.salary').innerText;
+        const status = parentNode.querySelector('.status').innerText;
+        parentNode.querySelector('.status').innerText = "Rejected"
+        const discription = parentNode.querySelector('.discription').innerText;
+        const cardInfo = {
+            companyName, position, location, type, salary, status: "Rejected", discription
         }
 
-        const jobExist= rejectedList.find(item => item.companyName== cardInfo.companyName)
-        if(!jobExist){
+        const jobExist = rejectedList.find(item => item.companyName == cardInfo.companyName)
+        if (!jobExist) {
             rejectedList.push(cardInfo);
-            //const countshow=count.classList.remove("hidden");
-           
+            
+
         }
-        interviewList= interviewList.filter(item=>item.companyName != cardInfo.companyName)
-        if(currentStatus == "Interview-available-btn"){
+        interviewList = interviewList.filter(item => item.companyName != cardInfo.companyName)
+        if (currentStatus == "Interview-available-btn") {
             renderInterview()
         }
         calculateCount()
     }
-    
+
 })
 
 
-function renderInterview(){
-    filteredSection.innerHTML="";
-    for(let interview of interviewList){
-        let div= document.createElement('div');
-        div.className="card p-3 flex justify-between my-4 bg-white";
-        div.innerHTML=`<div class="leftSide">
+
+function renderInterview() {
+   
+    filteredSection.innerHTML = "";
+    for (let interview of interviewList) {
+        
+         
+            let divs= document.createElement('div');
+            divs.className = "card p-3 flex justify-between my-4 bg-white";
+            divs.innerHTML = `<div class="leftSide">
         <div class="flex flex-col gap-2">
                         <p id="" class="companyName font-bold">${interview.companyName}</p>
                         <p class="position">${interview.position}</p>
@@ -137,15 +143,19 @@ function renderInterview(){
                 </div>
                  <div  class="rightSide"><button class="Deletebtn">Delete</button></div>
         `
-        filteredSection.appendChild(div)
+        filteredSection.appendChild(divs);
+            of.classList.remove("hidden");
+            count.classList.remove("hidden");
+            count.innerText = filteredSection.children.length
+        }
     }
-}
-function renderReject(){
-    filteredSection.innerHTML="";
-    for(let reject of rejectedList){
-        let div= document.createElement('div');
-        div.className="card p-3 flex justify-between my-4 bg-white";
-        div.innerHTML=`<div class="leftSide">
+
+function renderReject() {
+    filteredSection.innerHTML = "";
+    for (let reject of rejectedList) {
+        let div = document.createElement('div');
+        div.className = "card p-3 flex justify-between my-4 bg-white";
+        div.innerHTML = `<div class="leftSide">
         <div class="flex flex-col gap-2">
                         <p id="" class="companyName font-bold">${reject.companyName}</p>
                         <p class="position">${reject.position}</p>
@@ -164,6 +174,23 @@ function renderReject(){
                 </div>
                  <div  class="rightSide"><button class="Deletebtn">Delete</button></div>
         `
-        filteredSection.appendChild(div)
+        filteredSection.appendChild(div);
+        of.classList.remove("hidden");
+        count.classList.remove("hidden");
+        count.innerText = filteredSection.children.length
     }
 }
+function NotAvailable(){
+    if(interviewList.length==0){
+    window.location.href="no-notification.html"}
+    else if(interviewList.length!=0){
+        renderInterview() 
+
+    }
+    else if(rejectedList.length==0){
+       window.location.href="no-notification.html"} 
+       else if(rejectedList.length!=0){
+        renderReject()
+       }
+    }
+

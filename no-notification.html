@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application Tracker</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="w-[80%] mx-auto space-y-8 bg-blue-50 ">
+    <header class="border border-dotted border-blue-600">
+        <h1 class="text-4xl text-blue-500 font-bold my-3">Job Application Tracker</h1>
+        <div class="flex justify-between gap-3">
+            <div class="bg-white w-full p-3">
+                <p>Total</p>
+                <p id="totalCount" class="text-blue-500 font-bold">8</p>
+            </div>
+            <div class="bg-white w-full p-3">
+                <p>Interview</p>
+                <p id="interviewCount" class="text-green-500 font-bold">0</p>
+            </div>
+            <div class="bg-white w-full p-3">
+                <p>Rejected</p>
+                <p id="rejectedCount" class="text-red-500 font-bold">0</p>
+            </div>
+        </div>
+    </header>
+    <hr class="border-gray-200 space-y-1">
+    <main>
+        <div class="flex justify-between">
+            <p class=" text-blue-500 text-2xl font-bold">Available Jobs</p>
+            <p><span class="hidden" id="count">2 </span><span class="hidden" id="of"> of </span><span id="update">8</span> jobs</p>
+        </div>
+        <div class="buttons mt-2.5">
+            <button class="bg-white text-black p-3 rounded-md mr-0.5 w-[85px]" id="All-available-btn" onclick="toggleStyle('All-available-btn');available()"
+                >All</button>
+           <button class="bg-white text-black p-3  w-[85px] rounded-md mr-0.5" id="Interview-available-btn"
+                onclick="toggleStyle('Interview-available-btn');NotAvailable()">Interview</button>
+            <button class="bg-white text-black p-3 rounded-md w-[85px]" onclick="toggleStyle('Rejected-available-btn');NotAvailable()"
+                id="Rejected-available-btn">Rejected</button>
+        </div>
+        <p>there is nothing</p>
+        <script src="./script/notavailable.js" ></script>
+        <script src="./script/script.js"></script>
+</body>
+
+</html>
