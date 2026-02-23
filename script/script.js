@@ -11,6 +11,7 @@ const interviewFilterBtn = document.getElementById('Interview-available-btn');
 const rejectFilterBtn = document.getElementById('Rejected-available-btn');
 const allCardSection = document.getElementById('allCards');
 const mainContainer = document.querySelector('main');
+const FilterSec= document.getElementById("Filter-sec")
 const filteredSection = document.getElementById('filtered-Section');
 const NotavailableSection = document.getElementById("NotAvailable-section")
 const update = document.getElementById('update');
@@ -38,15 +39,18 @@ function toggleStyle(id) {
     selected.classList.add('bg-blue-400', 'text-white')
     if (id == "Interview-available-btn") {
         allCardSection.classList.add('hidden');
-        filteredSection.classList.remove('hidden')
+        filteredSection.classList.remove('hidden');
+         FilterSec.classList.add("hidden")
         renderInterview()
     } else if (id == "All-available-btn") {
         allCardSection.classList.remove('hidden');
-        filteredSection.classList.add('hidden')
+        filteredSection.classList.add('hidden');
+         FilterSec.classList.add("hidden")
     }
     else if (id == "Rejected-available-btn") {
         allCardSection.classList.add('hidden');
-        filteredSection.classList.remove('hidden')
+        filteredSection.classList.add('hidden');
+         FilterSec.classList.remove("hidden")
         renderReject()
     }
 }
@@ -144,14 +148,13 @@ function renderInterview() {
                  <div  class="rightSide"><button class="Deletebtn">Delete</button></div>
         `
         filteredSection.appendChild(divs);
-            of.classList.remove("hidden");
-            count.classList.remove("hidden");
-            count.innerText = filteredSection.children.length
+        
+           
         }
     }
 
 function renderReject() {
-    filteredSection.innerHTML = "";
+    FilterSec.innerHTML = "";
     for (let reject of rejectedList) {
         let div = document.createElement('div');
         div.className = "card p-3 flex justify-between my-4 bg-white";
@@ -174,24 +177,25 @@ function renderReject() {
                 </div>
                  <div  class="rightSide"><button class="Deletebtn">Delete</button></div>
         `
-        filteredSection.appendChild(div);
-        of.classList.remove("hidden");
-        count.classList.remove("hidden");
-        count.innerText = filteredSection.children.length
+        FilterSec.appendChild(div);
+         
+       
+       
     }
 }
 function NotAvailableforInterview(){
-    if(interviewList.length==0){
+    
+    if(interviewList.length!=0){
+        renderInterview() }
+        else if(interviewList.length==0){
     window.location.href="no-notification.html"}
-    else if(interviewList.length!=0){
-        renderInterview() 
 
-    }}
+    }
     function NotAvailableforReject(){
-    if(rejectedList.length==0){
-       window.location.href="no-notification.html"} 
-       else if(rejectedList.length!=0){
+    
+        if(rejectedList.length!=0){
         renderReject()
-       }
+       } else if(rejectedList.length==0){
+       window.location.href="no-notification.html"} 
     }
 

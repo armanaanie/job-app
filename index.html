@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 
-<body class="w-[80%] mx-auto space-y-8 bg-blue-50 ">
+<body class="w-[70%] mx-auto space-y-8 bg-blue-50 ">
     <header class="border border-dotted border-blue-600">
         <h1 class="text-4xl text-blue-500 font-bold my-3">Job Application Tracker</h1>
         <div class="flex justify-between gap-3">
@@ -30,7 +30,7 @@
     <main>
         <div class="flex justify-between">
             <p class=" text-blue-500 text-2xl font-bold">Available Jobs</p>
-            <p><span class="hidden" id="count">2 </span><span class="hidden" id="of"> of </span><span id="update">8</span> jobs</p>
+            <p><span id="update">8</span> jobs</p>
         </div>
         <div class="buttons mt-2.5">
             <button class="bg-blue-400 text-white p-3 rounded-md mr-0.5 w-[85px]" id="All-available-btn"
@@ -40,7 +40,12 @@
             <button class="bg-white text-black p-3 rounded-md w-[85px]" onclick="toggleStyle('Rejected-available-btn'); NotAvailableforReject()"
                 id="Rejected-available-btn">Rejected</button>
         </div>
-        <div id="NotAvailable-section" class="hidden"><a href="./no-notification.html">hgjhgj</a></div>
+<section>
+    <div class="hidden" id="Filter-sec"></div>
+</section>
+
+
+
         <section>
             <div class="hidden" id="filtered-Section"></div>
         </section>
