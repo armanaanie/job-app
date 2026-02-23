@@ -30,7 +30,9 @@
     <main>
         <div class="flex justify-between">
             <p class=" text-blue-500 text-2xl font-bold">Available Jobs</p>
-            <p><span id="update">8</span> jobs</p>
+            <p><span class="hidden" id="count"></span>
+                <span class="hidden" id="rejectcount"></span>
+                <span id="update">8</span> jobs</p>
         </div>
         <div class="buttons mt-2.5">
             <button class="bg-blue-400 text-white p-3 rounded-md mr-0.5 w-[85px]" id="All-available-btn"
@@ -49,13 +51,7 @@
         <section>
             <div class="hidden" id="filtered-Section"></div>
         </section>
-        <section class="w-full hidden">
-            <div id="notificationSection" class="flex flex-col gap-2 justify-center bg-white"><img
-                    src="./image/assignment_7959593 1.png" alt="">
-                <p>No jobs available</p>
-                <p>Check back soon for new job opportunities</p>
-            </div>
-        </section>
+        
         <section id="allCards">
             <div class="card p-3 flex justify-between my-4 bg-white">
                 <div class="leftSide">

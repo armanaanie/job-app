@@ -16,14 +16,15 @@ const filteredSection = document.getElementById('filtered-Section');
 const NotavailableSection = document.getElementById("NotAvailable-section")
 const update = document.getElementById('update');
 const count = document.getElementById("count");
-const of = document.getElementById("of")
+const rejectcount= document.getElementById('rejectcount')
 
 function calculateCount() {
     total.innerText = allCardSection.children.length;
     update.innerText = allCardSection.children.length;
     interviewCount.innerText = interviewList.length;
     rejectedCount.innerText = rejectedList.length;
-
+count.innerText=`${interviewCount.innerText} of`
+rejectcount.innerText=`${rejectedCount.innerText} of`
 } calculateCount()
 
 function toggleStyle(id) {
@@ -42,15 +43,21 @@ function toggleStyle(id) {
         filteredSection.classList.remove('hidden');
          FilterSec.classList.add("hidden")
         renderInterview()
+        rejectcount.classList.add("hidden");
+        count.classList.remove("hidden")
     } else if (id == "All-available-btn") {
         allCardSection.classList.remove('hidden');
         filteredSection.classList.add('hidden');
          FilterSec.classList.add("hidden")
+          rejectcount.classList.add("hidden");
+        count.classList.add("hidden")
     }
     else if (id == "Rejected-available-btn") {
         allCardSection.classList.add('hidden');
         filteredSection.classList.add('hidden');
-         FilterSec.classList.remove("hidden")
+         FilterSec.classList.remove("hidden");
+          rejectcount.classList.remove("hidden");
+        count.classList.add("hidden")
         renderReject()
     }
 }
@@ -184,18 +191,25 @@ function renderReject() {
     }
 }
 function NotAvailableforInterview(){
+     
+    if(interviewList.length===0){
+         window.location.href="no-notification.html"} 
     
-    if(interviewList.length!=0){
-        renderInterview() }
-        else if(interviewList.length==0){
-    window.location.href="no-notification.html"}
-
+    else{
+        renderInterview()
+    }
+   
     }
     function NotAvailableforReject(){
-    
-        if(rejectedList.length!=0){
-        renderReject()
-       } else if(rejectedList.length==0){
+     if(rejectedList.length===0){
        window.location.href="no-notification.html"} 
+       else{
+        renderReject()
+       }
     }
 
+document.addEventListener('click', function(event){
+    if(event.target.classList.contains('Deletebtn')){
+        event.target.closest('.card').remove();
+    }
+})
