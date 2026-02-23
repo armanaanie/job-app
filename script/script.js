@@ -124,7 +124,9 @@ mainContainer.addEventListener("click", function (event) {
     }
 else if(event.target.classList.contains('Deletebtn')){
         event.target.closest('.card').remove();
-    }calculateCount()
+        calculateCount();
+    }
+   
 })
 
 
