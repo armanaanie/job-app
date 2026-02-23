@@ -23,8 +23,8 @@ function calculateCount() {
     update.innerText = allCardSection.children.length;
     interviewCount.innerText = interviewList.length;
     rejectedCount.innerText = rejectedList.length;
-count.innerText=`${interviewCount.innerText} of`
-rejectcount.innerText=`${rejectedCount.innerText} of`
+count.innerText=`${interviewCount.innerText} of  `
+rejectcount.innerText=`${rejectedCount.innerText} of  `
 } calculateCount()
 
 function toggleStyle(id) {
@@ -122,7 +122,9 @@ mainContainer.addEventListener("click", function (event) {
         }
         calculateCount()
     }
-
+else if(event.target.classList.contains('Deletebtn')){
+        event.target.closest('.card').remove();
+    }calculateCount()
 })
 
 
@@ -185,18 +187,20 @@ function renderReject() {
                  <div  class="rightSide"><button class="Deletebtn">Delete</button></div>
         `
         FilterSec.appendChild(div);
-         
        
        
-    }
+    } 
+       
 }
 function NotAvailableforInterview(){
      
     if(interviewList.length===0){
-         window.location.href="no-notification.html"} 
+         window.location.href="no-notification.html"
+         }
     
     else{
-        renderInterview()
+        renderInterview();
+        
     }
    
     }
@@ -208,8 +212,3 @@ function NotAvailableforInterview(){
        }
     }
 
-document.addEventListener('click', function(event){
-    if(event.target.classList.contains('Deletebtn')){
-        event.target.closest('.card').remove();
-    }
-})
