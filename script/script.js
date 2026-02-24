@@ -156,7 +156,7 @@ function renderInterview() {
                             class="interviewBtn bg-white text-green-500 border border-green-500 p-3">Interview</button><button
                             class="rejectBtn bg-white text-red-500 border border-red-500 p-3">Rejected</button></div>
                 </div>
-                 <div  class="rightSide"><button class="Deletebtn">Delete</button></div>
+                 <div  class="rightSide"><button class=""><i class="fa-solid fa-trash Deletebtn"></i></button></div>
         `
         filteredSection.appendChild(divs);
         
@@ -186,7 +186,7 @@ function renderReject() {
                             class="interviewBtn bg-white text-green-500 border border-green-500 p-3">Interview</button><button
                             class="rejectBtn bg-white text-red-500 border border-red-500 p-3">Rejected</button></div>
                 </div>
-                 <div  class="rightSide"><button class="Deletebtn">Delete</button></div>
+                 <div  class="rightSide"><button class=""><i class="fa-solid fa-trash Deletebtn"></i></button></div>
         `
         FilterSec.appendChild(div);
        
